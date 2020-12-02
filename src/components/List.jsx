@@ -1,20 +1,18 @@
 import React, { useState } from 'react'
 
 export default function List(props) {
-    const { removeTodo, editTodo, doneEditTodo, completedTodo} = props;
+    const {removeTodo, editTodo, doneEditTodo, completedTodo, children } = props;
     const [value, setValue] = useState("");
     const todos = props.todo.map((element) => (
         element.isEditing ? (
             <li className="collection-item">
                 <div className="row">
                     <section className="col s4 offset-s4">
-                        <form>
                             <div className="input-field">
-                                <input type="text" onChange={(e) => setValue({ value: e.target.value })} />
+                                <input type="text" onChange={(e) => setValue(e.target.value)} />
                                 <button className="waves-effect waves-light btn" onClick={() => editTodo(element.id)}>cancel</button>
                                 <button className="waves-effect waves-light btn" onClick={() => doneEditTodo(element.id, value)}>done</button>
                             </div>
-                        </form>
                     </section>
                 </div>
             </li>
@@ -33,17 +31,16 @@ export default function List(props) {
     return (
         <div className="row">
             <section className="col s6 offset-s3">
-                <form>
                     <ul className="collection">
+                        {children}
                         {todos}
                     </ul>
-                </form>
             </section>
         </div>
     )
 
     // {
-    //     todos.map((element) => (
+    //     todo.map((element) => (
     //         element.isEditing ? (
     //             <li className="collection-item">
     //                 <section className="col s4 offset-s4">
@@ -68,4 +65,5 @@ export default function List(props) {
     //             )
     //     ))
     // }
+
 }

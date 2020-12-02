@@ -3,9 +3,10 @@ import Input from './Input';
 import List from './List';
 
 export default function Todo(props) {
-    const {todo, addTodo, removeTodo, editTodo, doneEditTodo, completedTodo} = props;
+    const {todo, addTodo, removeTodo, editTodo, doneEditTodo, completedTodo, children} = props;
     return (
         <div>
+            {children}
             <Input 
                 addTodo = {addTodo}
             />

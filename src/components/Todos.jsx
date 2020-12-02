@@ -1,23 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import Todo from './Todo';
-import Header from './Header';
 
 export default function Todos() {
     const [todo, setTodo]= useState(
-        {
-            text: 'Todo 1',
-            completed: false,
-            date: new Date(),
-            id: 1,
-            isEditing: false,
-        },
-        {
-            text: 'Todo 2',
-            completed: false,
-            date: new Date(),
-            id: 1,
-            isEditing: false,
-        }
+        [
+            {
+                text: 'Todo 1',
+                completed: false,
+                date: new Date(),
+                id: 1,
+                isEditing: false,
+            },
+            {
+                text: 'Todo 2',
+                completed: false,
+                date: new Date(),
+                id: 2,
+                isEditing: false,
+            }
+        ]
     );
 
     useEffect(()=> {
@@ -31,8 +32,7 @@ export default function Todos() {
       }, [todo])
 
     const addTodo = (value) => {
-        setTodo({
-            todo: [
+        setTodo([
                 ...todo,
                 {
                     text: value,
@@ -42,15 +42,13 @@ export default function Todos() {
                     isEditing: false, 
                 }
             ]
-        })
+        )
         console.log("todo", todo);
     }
 
     const removeTodo = (id) => {
         const newTodo = todo.filter((todo) => todo.id !== id);
-        setTodo({
-            todo: newTodo,
-        })
+        setTodo(newTodo)
         console.log("abis apus todo", todo);
     }
 
@@ -58,9 +56,7 @@ export default function Todos() {
         const newTodo = [...todo];
         const editedTodo = newTodo.find((todo) => todo.id === id);
         editedTodo.isEditing = !editedTodo.isEditing;
-        setTodo({
-            todo: newTodo,
-        })
+        setTodo(newTodo)
         //console.log("abis edit todo", todo);
     }
 
@@ -69,9 +65,7 @@ export default function Todos() {
         const editedTodo = newTodo.find((todo) => todo.id === id);
         editedTodo.isEditing = !editedTodo.isEditing;
         editedTodo.text = text;
-        setTodo({
-            todo: newTodo,
-        })
+        setTodo(newTodo)
         console.log("abis edit todo", text);
     }
 
@@ -79,9 +73,7 @@ export default function Todos() {
         const newTodo = [...todo];
         const completeTodo = newTodo.find((todo) => todo.id === id);
         completeTodo.completed = !completeTodo.completed;
-        setTodo({
-            todo: newTodo,
-        })
+        setTodo(newTodo)
         console.log("completed todo", todo);
     }
 
@@ -117,7 +109,6 @@ export default function Todos() {
 
     return (
         <div>
-            <Header />
             <Todo 
                 todo={todo} 
                 addTodo={addTodo} 
