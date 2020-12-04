@@ -37,7 +37,7 @@ const TodoApp = ({ todos, addTodo, removeTodo, editTodo, doneEditTodo, completed
                         <ul className="collection">
                             {todos?.todos.map((todo) => (
                                 todo.isEditing ? (
-                                    <li className="collection-item">
+                                    <li className="collection-item" key={todo.id}>
                                         <div className="row">
                                             <section className="col s4 offset-s4">
                                                 <div className="input-field">
@@ -49,7 +49,7 @@ const TodoApp = ({ todos, addTodo, removeTodo, editTodo, doneEditTodo, completed
                                         </div>
                                     </li>
                                 ) : (
-                                        <li className="collection-item">
+                                        <li className="collection-item" key={todo.id}>
                                             {todo.completed ? <s>{todo.text}</s> : todo.text}
                                             <div className="input-field">
                                                 <button className="waves-effect waves-light btn" onClick={() => removeTodo(todo.id)}>Remove</button>
