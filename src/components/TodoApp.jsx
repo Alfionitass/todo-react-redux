@@ -22,7 +22,7 @@ const TodoApp = ({ todos, addTodo, removeTodo, editTodo, doneEditTodo, completed
         <React.Fragment>
             <nav>
                 <div className="nav-wrapper">
-                    <h6 className="brand-logo center">Krystal's Todo List</h6>
+                    <h6 className="brand-logo center">Todo List App</h6>
                 </div>
             </nav>
             <div className="container">
@@ -37,17 +37,19 @@ const TodoApp = ({ todos, addTodo, removeTodo, editTodo, doneEditTodo, completed
                         <ul className="collection">
                             {todos?.todos.map((todo) => (
                                 todo.isEditing ? (
-                                    <li key={todo.id} className="collection-item">
-                                        <section className="col s4 offset-s4">
-                                            <div className="input-field">
-                                                <input type="text" onChange={(e) => setValue(e.target.value)} />
-                                                <button className="waves-effect waves-light btn" onClick={() => editTodo(todo.id)}>cancel</button>
-                                                <button className="waves-effect waves-light btn" onClick={() => doneEditTodo(todo.id, value)}>done</button>
-                                            </div>
-                                        </section>
+                                    <li className="collection-item">
+                                        <div className="row">
+                                            <section className="col s4 offset-s4">
+                                                <div className="input-field">
+                                                    <input type="text" onChange={(e) => setValue(e.target.value)} />
+                                                    <button className="waves-effect waves-light btn" onClick={() => editTodo(todo.id)}>cancel</button>
+                                                    <button className="waves-effect waves-light btn" onClick={() => doneEditTodo(todo.id, value)}>done</button>
+                                                </div>
+                                            </section>
+                                        </div>
                                     </li>
                                 ) : (
-                                        <li key={todo.id} className="collection-item">
+                                        <li className="collection-item">
                                             {todo.completed ? <s>{todo.text}</s> : todo.text}
                                             <div className="input-field">
                                                 <button className="waves-effect waves-light btn" onClick={() => removeTodo(todo.id)}>Remove</button>
